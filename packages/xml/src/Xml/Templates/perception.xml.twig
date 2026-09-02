@@ -28,6 +28,9 @@
 	<cbc:ID>{{ doc.serie }}-{{ doc.correlativo }}</cbc:ID>
 	<cbc:IssueDate>{{ doc.fechaEmision|date('Y-m-d') }}</cbc:IssueDate>
 	<cbc:IssueTime>{{ doc.fechaEmision|date('H:i:s') }}</cbc:IssueTime>
+	{% if doc.exceptionalIndicator %}
+	<sac:ExceptionalIndicator>{{ doc.exceptionalIndicator }}</sac:ExceptionalIndicator>
+	{% endif %}
 	<cac:AgentParty>
 		<cac:PartyIdentification>
 			<cbc:ID schemeID="6">{{ emp.ruc }}</cbc:ID>

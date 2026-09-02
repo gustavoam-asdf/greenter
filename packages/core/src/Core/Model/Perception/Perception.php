@@ -77,6 +77,18 @@ class Perception implements DocumentInterface
     private $observacion;
 
     /**
+     * Indicador de emision excepcional.
+     *
+     * Campo 7 de la hoja «Percepciones1_0» de las reglas de validacion de
+     * SUNAT. Su unico valor admitido es '01' (regla 3322) y, cuando se
+     * consigna, el comprobante solo puede llevar un documento relacionado
+     * (3323) y ese documento debe ser una factura (3324).
+     *
+     * @var string
+     */
+    private $exceptionalIndicator;
+
+    /**
      * Dato del Comprobante relacionado.
      *
      * @var PerceptionDetail[]
@@ -279,6 +291,25 @@ class Perception implements DocumentInterface
     public function setObservacion(?string $observacion): Perception
     {
         $this->observacion = $observacion;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getExceptionalIndicator(): ?string
+    {
+        return $this->exceptionalIndicator;
+    }
+
+    /**
+     * @param string|null $exceptionalIndicator
+     * @return Perception
+     */
+    public function setExceptionalIndicator(?string $exceptionalIndicator): Perception
+    {
+        $this->exceptionalIndicator = $exceptionalIndicator;
 
         return $this;
     }
