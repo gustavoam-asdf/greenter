@@ -63,6 +63,11 @@ class BaseSale implements DocumentInterface
     /**
      * @var float
      */
+    protected $sumOtrosDescuentos;
+
+    /**
+     * @var float
+     */
     protected $sumOtrosCargos;
 
     /**
@@ -347,6 +352,26 @@ class BaseSale implements DocumentInterface
     public function setTipoMoneda(?string $tipoMoneda): self
     {
         $this->tipoMoneda = $tipoMoneda;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSumOtrosDescuentos(): ?float
+    {
+        return $this->sumOtrosDescuentos;
+    }
+
+    /**
+     * @param float $sumOtrosDescuentos
+     *
+     * @return $this
+     */
+    public function setSumOtrosDescuentos(?float $sumOtrosDescuentos): self
+    {
+        $this->sumOtrosDescuentos = $sumOtrosDescuentos;
 
         return $this;
     }

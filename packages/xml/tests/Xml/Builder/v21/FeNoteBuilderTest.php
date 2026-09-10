@@ -51,4 +51,33 @@ class FeNoteBuilderTest extends TestCase
         $this->assertNotEmpty($xml);
         $this->assertSchema($xml);
     }
+
+    /**
+     * @dataProvider noteTypeProvider
+     */
+    public function testCreateXmlNoteWithGlobalDiscount(string $tipoDoc)
+    {
+        /**@var $note Note*/
+        $note = $this->createDocument(NoteStore::class);
+        $note->setTipoDoc($tipoDoc);
+        $note->setUblVersion('2.1');
+        $note->setSumOtrosDescuentos(20.50);
+
+        $xml = $this->build($note);
+
+        $this->assertNotEmpty($xml);
+        $this->assertSchema($xml);
+        $this->assertStringContainsString(
+            '<cbc:AllowanceTotalAmount currencyID="PEN">20.50</cbc:AllowanceTotalAmount>',
+            $xml
+        );
+    }
+
+    public function noteTypeProvider(): array
+    {
+        return [
+            'credit note' => ['07'],
+            'debit note' => ['08'],
+        ];
+    }
 }

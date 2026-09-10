@@ -278,6 +278,9 @@
         {% endif %}
     </cac:TaxTotal>
     <cac:LegalMonetaryTotal>
+        {% if doc.sumOtrosDescuentos is not null %}
+        <cbc:AllowanceTotalAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.sumOtrosDescuentos|n_format }}</cbc:AllowanceTotalAmount>
+        {% endif %}
         {% if doc.sumOtrosCargos is not null %}
         <cbc:ChargeTotalAmount currencyID="{{ doc.tipoMoneda }}">{{ doc.sumOtrosCargos|n_format }}</cbc:ChargeTotalAmount>
         {% endif %}
